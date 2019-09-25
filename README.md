@@ -1,2 +1,2 @@
-# ReactNativeApp
-React native application for learning purposes.
+# RecipeApp
+React native recipe application for learning purposes.
