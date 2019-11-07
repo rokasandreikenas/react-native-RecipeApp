@@ -23,6 +23,36 @@ export const categories = [
 
 export const recipes = [
     {
+        recipeId: 1001,
+        categoryId: 0,
+        title: 'Borscht',
+        photo_url: 'https://vikalinka.com/wp-content/uploads/2019/01/Borscht-10-Edit.jpg',
+        photosArray: [
+            'https://vikalinka.com/wp-content/uploads/2019/01/Borscht-10-Edit.jpg',
+            'https://www.chatelaine.com/wp-content/uploads/2016/12/Beef-and-beet-borscht.jpg',
+            'https://vikalinka.com/wp-content/uploads/2019/01/Borscht-18-Edit.jpg'
+        ],
+        time: '45',
+        ingredients: [],
+        description: 'Cook the beets and carrots in the beef stock, covered, until tender, about 45 minutes. Remove from broth, let cool and then coarsely shred. Set aside.'
+
+    },
+    {
+        recipeId: 1002,
+        categoryId: 0,
+        title: 'Cold beet soup',
+        photo_url: 'https://i2.wp.com/1bigbite.com/wp-content/uploads/2015/06/saltibarsciai-3.jpg?w=640',
+        photosArray: [
+            'https://i2.wp.com/1bigbite.com/wp-content/uploads/2015/06/saltibarsciai-3.jpg?w=640',
+            'https://s2.15min.lt/images/photos/2013/06/03/original/saltibarsciai-51acf194aba3f.jpg',
+            'https://www.valgykimesveikiau.lt/wp-content/uploads/2019/05/veganiski-saltibarsciai-1024x768.jpg'
+        ],
+        time: '15',
+        ingredients: [],
+        description: 'Stir kefir, beets, green onions, cucumber and ¾ of the dill. Season to taste with lemon juice, sugar, salt, and pepper. Place the soup in your refrigerator for a few hours (but if you are hungry go for it). Serve in individual bowls each with cucumber, egg, potato and sprinkled with the remaining dill. Originally you would eat the boiled potato on the side, I prefer them cooked in the skin, cooled and chopped in the soup.'
+
+    },
+    {
         recipeId: 122,
         categoryId: 3,
         title: 'Oatmeal Cookies',
@@ -241,7 +271,7 @@ export const recipes = [
     },
     {
         recipeId: 0,
-        categoryId: 0,
+        categoryId: 1,
         title: 'Classic Lasagna',
         photo_url: 'https://namelymarly.com/wp-content/uploads/2018/04/20180415_Beet_Lasagna_10.jpg',
         photosArray: [

@@ -7,17 +7,23 @@ import {
   TouchableOpacity,
   Image,
   Dimensions,
-  TouchableHighlight
+  TouchableHighlight,
+  TextInput
 } from 'react-native';
 import styles from './styles';
 import Carousel, { Pagination } from 'react-native-snap-carousel';
 import { getIngredientName, getCategoryName, getCategoryById } from '../../src/data/MockDataAPI';
 import BackButton from '../../src/components/BackButton/BackButton';
 import ViewIngredientsButton from '../../src/components/ViewIngredientsButton/ViewIngredientsButton';
+import AsyncStorage from '@react-native-community/async-storage';
+
 
 const { width: viewportWidth } = Dimensions.get('window');
 
+
+
 export default class RecipeScreen extends React.Component {
+
   static navigationOptions = ({ navigation }) => {
     return {
       headerTransparent: 'true',
@@ -34,9 +40,41 @@ export default class RecipeScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      text: '',
+      comment: '',
+      getValue: '',
       activeSlide: 0
     };
   }
+
+  handleComment = text => {
+    this.setState({ comment: text });
+  };
+
+  saveValueFunction = () => {
+    //function to save the value in AsyncStorage
+    if (this.state.text) {
+      //To check the input not empty
+      AsyncStorage.setItem('any_key_here', this.state.text);
+      //Setting a data to a AsyncStorage with respect to a key
+      this.setState({ text: '' })
+      //Resetting the TextInput
+      alert('Data Saved');
+      this.getValueFunction();
+      //alert to confirm
+    } else {
+      alert('Please fill data');
+      //alert for the empty InputText
+    }
+  };
+  getValueFunction = () => {
+    //function to get the value from AsyncStorage
+    AsyncStorage.getItem('any_key_here').then(value =>
+      //AsyncStorage returns a promise so adding a callback to get the value
+      this.setState({ getValue: value })
+      //Setting the value in Text 
+    );
+  };
 
   renderImage = ({ item }) => (
     <TouchableHighlight>
@@ -53,6 +91,7 @@ export default class RecipeScreen extends React.Component {
   };
 
   render() {
+    const { text, comment } = this.state
     const { activeSlide } = this.state;
     const { navigation } = this.props;
     const item = navigation.getParam('item');
@@ -121,8 +160,30 @@ export default class RecipeScreen extends React.Component {
           <View style={styles.infoContainer}>
             <Text style={styles.infoDescriptionRecipe}>{item.description}</Text>
           </View>
+
+          <View style={styles.commentContainer}>
+            <View style={styles.commentInputContainer}>
+              <TextInput
+                style={styles.commentInputTextContainer}
+                placeholder="Add a comment..."
+                value={this.state.text}
+                onChangeText={data => this.setState({ text: data })}
+              />
+              <TouchableOpacity
+                style={styles.commentButton}
+                onPress={this.saveValueFunction}
+              >
+                <Text>Post</Text>
+              </TouchableOpacity>
+            </View>
+            <View>
+              <Text style={styles.commentInputContainer}>{this.state.comment}</Text>
+            </View>
+
+          </View>
+
         </View>
-      </ScrollView>
+      </ScrollView >
     );
   }
 }

@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { categories } from '../../../src/data/dataArray';
+import { getNumberOfRecipes } from '../../../src/data/MockDataAPI';
 import styles from './style';
 
 class CategoriesScreen extends Component {
